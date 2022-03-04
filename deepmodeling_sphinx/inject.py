@@ -35,6 +35,10 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
 
         def rtd_render(self, template, render_context):
             content = old_render(template, render_context)
+            comment_begin = r"<!--deepmodeling begin-->"
+            comment_end = r"<!--deepmodeling end-->"
+            if comment_begin in content:
+                return content
             begin_body = content.lower().find('</head>')
             source = os.path.join(
                 os.path.abspath(os.path.dirname(__file__)),
@@ -43,7 +47,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
             with open(source) as f:
                 banner = f.read()
             if begin_body != -1:
-                content = content[:begin_body] + banner + content[begin_body:]
+                content = content[:begin_body] + comment_begin + banner + comment_end + content[begin_body:]
             return content
 
         rtd_render._deepmodeling_patched = True

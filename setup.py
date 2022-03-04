@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="deepmodeling_sphinx",
-    version="0.0.1",
+    version="0.0.2",
     packages=['deepmodeling_sphinx'],
     install_require=['sphinx'],
     package_data={
