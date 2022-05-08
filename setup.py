@@ -2,7 +2,8 @@ from setuptools import setup
 
 setup(
     name="deepmodeling_sphinx",
-    version="0.0.4",
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
     packages=['deepmodeling_sphinx'],
     install_require=['sphinx'],
     package_data={
