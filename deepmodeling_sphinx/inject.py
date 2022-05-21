@@ -131,6 +131,7 @@ def minify_css_files(app, exception):
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
+    app.connect('html-page-context', insert_icp)
     app.connect('build-finished', minify_js_files)
     app.connect('build-finished', minify_css_files)
 
