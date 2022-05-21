@@ -73,7 +73,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
                                                         app.builder.templates)
 
 
-def minify_js_files(app):
+def minify_js_files(app, exception):
     staticdir = os.path.join(app.builder.outdir, '_static')
     for js in app.builder.script_files:
         fn = os.path.join(staticdir, js)
