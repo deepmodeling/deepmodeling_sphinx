@@ -72,12 +72,10 @@ def insert_icp(app, pagename, templatename, context, doctree):
             if comment_begin in content:
                 return content
             footer = content.lower().find('</footer>')
-            source = '<p><a href="beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
-            with open(source) as f:
-                banner = f.read()
+            icp_footer = '<p><a href="beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
             if footer != -1:
                 content = content[:footer] + comment_begin + \
-                    banner + comment_end + content[footer:]
+                    icp_footer + comment_end + content[footer:]
             return content
 
         render._deepmodeling_icp_patched = True
