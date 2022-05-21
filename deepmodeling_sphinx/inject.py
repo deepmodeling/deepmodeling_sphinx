@@ -3,6 +3,7 @@ from typing import Dict, Any
 import os
 
 import htmlmin
+from jsmin import jsmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
 
@@ -72,9 +73,21 @@ def minify_html_files(app, pagename, templatename, context, doctree):
                                                         app.builder.templates)
 
 
+def minify_js_files(app):
+    staticdir = os.path.join(app.builder.outdir, '_static')
+    for js in app.builder.script_files:
+        fn = os.path.join(staticdir, js)
+        if os.path.isfile(fn):
+            with open(fn, 'r+') as f:
+                minified_js = jsmin(f.read())
+                f.seek(0)
+                f.write(minified_js)
+                f.truncate()
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
-    app.connect('html-page-context', minify_html_files)
+    app.connect('build-finished', minify_js_files)
 
     return {'parallel_read_safe': True}
