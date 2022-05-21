@@ -9,6 +9,7 @@ setup(
         'sphinx',
         'htmlmin',
         'jsmin',
+        'cssmin',
     ],
     package_data={
         'deepmodeling_sphinx': ['banner.html',
