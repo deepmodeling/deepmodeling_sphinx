@@ -59,6 +59,30 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
                                                         app.builder.templates)
 
 
+def insert_icp(app, pagename, templatename, context, doctree):
+    if (
+        not hasattr(app.builder.templates.render, '_deepmodeling_icp_patched')
+    ):
+        old_render = app.builder.templates.render
+
+        def render(self, template, render_context):
+            content = old_render(template, render_context)
+            comment_begin = r"<!--deepmodeling icp begin-->"
+            comment_end = r"<!--deepmodeling icp end-->"
+            if comment_begin in content:
+                return content
+            footer = content.lower().find('</footer>')
+            icp_footer = '<p><a href="https://beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
+            if footer != -1:
+                content = content[:footer] + comment_begin + \
+                    icp_footer + comment_end + content[footer:]
+            return content
+
+        render._deepmodeling_icp_patched = True
+        app.builder.templates.render = types.MethodType(render,
+                                                        app.builder.templates)
+
+
 def minify_html_files(app, pagename, templatename, context, doctree):
     if (
         not hasattr(app.builder.templates.render, '_deepmodeling_minified')
@@ -105,6 +129,7 @@ def minify_css_files(app, exception):
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
+    app.connect('html-page-context', insert_icp)
     app.connect('build-finished', minify_js_files)
     app.connect('build-finished', minify_css_files)
 
