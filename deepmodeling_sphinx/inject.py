@@ -4,6 +4,7 @@ import os
 
 import htmlmin
 from jsmin import jsmin
+from cssmin import cssmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
 
@@ -84,9 +85,21 @@ def minify_js_files(app, exception):
                 f.truncate()
 
 
+def minify_css_files(app, exception):
+    for css in app.builder.css_files:
+        fn = os.path.join(app.builder.outdir, css)
+        if os.path.isfile(fn):
+            with open(fn, 'r+') as f:
+                minified_css = cssmin(f.read())
+                f.seek(0)
+                f.write(minified_css)
+                f.truncate()
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
     app.connect('build-finished', minify_js_files)
+    app.connect('build-finished', minify_css_files)
 
     return {'parallel_read_safe': True}
