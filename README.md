@@ -4,7 +4,8 @@ This package should be used in all sphinx projects under the [@deepmodeling](htt
 
 ## Features
 
-- Adding the DeepModeling banner
+- Add the DeepModeling banner
+- Add the ICP number to the footer
 - Minify HTML, Javascript, and CSS files
 
 ## How to use it
