@@ -74,9 +74,8 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
 
 def minify_js_files(app, exception):
-    staticdir = os.path.join(app.builder.outdir, '_static')
     for js in app.builder.script_files:
-        fn = os.path.join(staticdir, js)
+        fn = os.path.join(app.builder.outdir, js)
         if os.path.isfile(fn):
             with open(fn, 'r+') as f:
                 minified_js = jsmin(f.read())
