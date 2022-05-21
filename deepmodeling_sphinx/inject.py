@@ -2,7 +2,7 @@ import types
 from typing import Dict, Any
 import os
 
-import minify_html
+import htmlmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
 
@@ -65,8 +65,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
         def render(self, template, render_context):
             content = old_render(template, render_context)
-            return minify_html.minify(content, minify_css=True, minify_js=True,
-                                      )
+            return htmlmin.minify(content)
 
         render._deepmodeling_minified = True
         app.builder.templates.render = types.MethodType(render,
