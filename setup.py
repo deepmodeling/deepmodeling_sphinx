@@ -5,7 +5,7 @@ setup(
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
     packages=['deepmodeling_sphinx'],
-    install_require=[
+    install_requires=[
         'sphinx',
         'minify-html',
     ],
