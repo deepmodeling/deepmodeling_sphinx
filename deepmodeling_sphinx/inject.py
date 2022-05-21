@@ -75,6 +75,9 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
 
 def minify_js_files(app, exception):
+    if not hasattr(app.builder, "script_files"):
+        # not html builder
+        return
     for js in app.builder.script_files:
         fn = os.path.join(app.builder.outdir, js)
         if os.path.isfile(fn):
@@ -86,6 +89,9 @@ def minify_js_files(app, exception):
 
 
 def minify_css_files(app, exception):
+    if not hasattr(app.builder, "css_files"):
+        # not html builder
+        return
     for css in app.builder.css_files:
         fn = os.path.join(app.builder.outdir, css)
         if os.path.isfile(fn):
