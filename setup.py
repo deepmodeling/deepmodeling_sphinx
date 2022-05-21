@@ -8,6 +8,7 @@ setup(
     install_requires=[
         'sphinx',
         'htmlmin',
+        'jsmin',
     ],
     package_data={
         'deepmodeling_sphinx': ['banner.html',
