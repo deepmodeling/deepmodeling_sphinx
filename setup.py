@@ -5,7 +5,10 @@ setup(
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
     packages=['deepmodeling_sphinx'],
-    install_require=['sphinx'],
+    install_requires=[
+        'sphinx',
+        'minify-html',
+    ],
     package_data={
         'deepmodeling_sphinx': ['banner.html',
                                 'banner.css',
