@@ -1,7 +1,3 @@
-==================================
-deepmodeling_sphinx documentations
-==================================
-
 .. include:: ../README.md
    :parser: myst_parser.sphinx_
 
