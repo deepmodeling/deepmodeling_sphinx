@@ -66,6 +66,9 @@ def minify_html_files(app, pagename, templatename, context, doctree):
         def render(self, template, render_context):
             content = old_render(template, render_context)
             return minify_html.minify(content, minify_css=True, minify_js=True,
+                                      keep_spaces_between_attributes=True,
+                                      do_not_minify_doctype=True,
+                                      ensure_spec_compliant_unquoted_attribute_values=True,
                                       )
 
         render._deepmodeling_minified = True
