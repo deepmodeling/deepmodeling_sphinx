@@ -8,3 +8,4 @@ extensions = [
     'deepmodeling_sphinx',
 ]
 html_theme = 'sphinx_rtd_theme'
+root_doc = "index.md"
