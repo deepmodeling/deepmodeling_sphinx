@@ -5,7 +5,7 @@ This package should be used in all sphinx projects under the [@deepmodeling](htt
 ## Features
 
 - Adding the DeepModeling banner
-- Minify HTML files
+- Minify HTML and Javascript files
 
 ## How to use it
 
