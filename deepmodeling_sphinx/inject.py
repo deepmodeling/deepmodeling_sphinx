@@ -2,6 +2,7 @@ import types
 from typing import Dict, Any
 import os
 
+import minify_html
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
 
@@ -33,7 +34,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
     ):
         old_render = app.builder.templates.render
 
-        def rtd_render(self, template, render_context):
+        def render(self, template, render_context):
             content = old_render(template, render_context)
             comment_begin = r"<!--deepmodeling begin-->"
             comment_end = r"<!--deepmodeling end-->"
@@ -47,16 +48,34 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
             with open(source) as f:
                 banner = f.read()
             if begin_body != -1:
-                content = content[:begin_body] + comment_begin + banner + comment_end + content[begin_body:]
+                content = content[:begin_body] + comment_begin + \
+                    banner + comment_end + content[begin_body:]
             return content
 
-        rtd_render._deepmodeling_patched = True
-        app.builder.templates.render = types.MethodType(rtd_render,
+        render._deepmodeling_patched = True
+        app.builder.templates.render = types.MethodType(render,
+                                                        app.builder.templates)
+
+
+def minify_html_files(app, pagename, templatename, context, doctree):
+    if (
+        not hasattr(app.builder.templates.render, '_deepmodeling_minified')
+    ):
+        old_render = app.builder.templates.render
+
+        def render(self, template, render_context):
+            content = old_render(template, render_context)
+            return minify_html.minify(content, minify_css=True, minify_js=True,
+                                      remove_processing_instructions=True)
+
+        render._deepmodeling_minified = True
+        app.builder.templates.render = types.MethodType(render,
                                                         app.builder.templates)
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
+    app.connect('html-page-context', minify_html_files)
 
     return {'parallel_read_safe': True}
