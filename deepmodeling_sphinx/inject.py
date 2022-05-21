@@ -72,7 +72,7 @@ def insert_icp(app, pagename, templatename, context, doctree):
             if comment_begin in content:
                 return content
             footer = content.lower().find('</footer>')
-            icp_footer = '<p><a href="beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
+            icp_footer = '<p><a href="https://beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
             if footer != -1:
                 content = content[:footer] + comment_begin + \
                     icp_footer + comment_end + content[footer:]
