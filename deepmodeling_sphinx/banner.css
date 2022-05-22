@@ -541,3 +541,7 @@
     position: relative;
     z-index: 201;
   }
+
+.wy-side-scroll {
+  height: calc(100% - 68px)!important;   
+}
