@@ -545,3 +545,9 @@
 .wy-side-scroll {
   height: calc(100% - 68px)!important;   
 }
+
+@media screen and (min-width: 1100px) {
+    .wy-side-scroll {
+      height: calc(100% - 90px)!important;   
+    }
+}
