@@ -54,6 +54,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
                     banner + comment_end + content[begin_body:]
             return content
 
+        render.__dict__.update(old_render.__dict__)
         render._deepmodeling_patched = True
         app.builder.templates.render = types.MethodType(render,
                                                         app.builder.templates)
@@ -78,6 +79,7 @@ def insert_icp(app, pagename, templatename, context, doctree):
                     icp_footer + comment_end + content[footer:]
             return content
 
+        render.__dict__.update(old_render.__dict__)
         render._deepmodeling_icp_patched = True
         app.builder.templates.render = types.MethodType(render,
                                                         app.builder.templates)
@@ -93,6 +95,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
             content = old_render(template, render_context)
             return htmlmin.minify(content)
 
+        render.__dict__.update(old_render.__dict__)
         render._deepmodeling_minified = True
         app.builder.templates.render = types.MethodType(render,
                                                         app.builder.templates)
