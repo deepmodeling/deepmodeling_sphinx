@@ -79,6 +79,7 @@ def insert_icp(app, pagename, templatename, context, doctree):
                     icp_footer + comment_end + content[footer:]
             return content
 
+        render.__dict__.update(old_render.__dict__)
         render._deepmodeling_icp_patched = True
         app.builder.templates.render = types.MethodType(render,
                                                         app.builder.templates)
