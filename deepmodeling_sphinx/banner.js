@@ -1,3 +1,7 @@
+/* The initial version is taken from 
+https://github.com/pytorch/pytorch_sphinx_theme
+under MIT license
+*/
 window.mobileMenu = {
     bind: function () {
         $("[data-behavior='open-mobile-menu']").on('click', function (e) {

@@ -1,3 +1,7 @@
+<!-- The initial version is taken from 
+https://github.com/pytorch/pytorch_sphinx_theme
+under MIT license
+-->
 <div class="container-fluid header-holder tutorials-header" id="header-holder">
     <div class="container">
         <div class="header-container">
@@ -5,55 +9,28 @@
 
             <div class="main-menu">
                 <ul>
-                    <li>
-                        <a href="https://deepmodeling.com">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="https://deepmodeling.com/blog/">Blog</a>
-                    </li>
-
-                    <li>
-                        <a href="https://tutorials.deepmodeling.com">Tutorials</a>
-                    </li>
-
-                    <li class="active docs-active">
+                    {% for item in items %}
+                    <li class="{{ item.class }}">
+                    {% if item.subitem %}
                         <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
-                            <a href="https://docs.deepmodeling.com/" class="resource-option with-down-orange-arrow">
-                                Docs
+                            <a href="{{ item.url }}" class="resource-option with-down-orange-arrow">
+                                {{ item.title }}
                             </a>
                             <div class="resources-dropdown-menu">
+                                {% for subitem in item.subitem %}
                                 <a class="doc-dropdown-option nav-dropdown-item"
-                                    href="https://docs.deepmodeling.com/projects/deepmd/">
-                                    <span class="dropdown-title">DeePMD-kit</span>
+                                    href="{{ subitem.url }}">
+                                    <span class="dropdown-title">{{ subitem.title }}</span>
                                     <p></p>
                                 </a>
-                                <a class="doc-dropdown-option nav-dropdown-item"
-                                    href="https://docs.deepmodeling.com/projects/dpgen/">
-                                    <span class="dropdown-title">DP-GEN</span>
-                                    <p></p>
-                                </a>
-                                <a class="doc-dropdown-option nav-dropdown-item"
-                                    href="https://docs.deepmodeling.com/projects/dpdata/">
-                                    <span class="dropdown-title">dpdata</span>
-                                    <p></p>
-                                </a>
-                                <a class="doc-dropdown-option nav-dropdown-item"
-                                    href="https://docs.deepmodeling.com/projects/dpdispatcher/">
-                                    <span class="dropdown-title">DPDispatcher</span>
-                                    <p></p>
-                                </a>
+                                {% endfor %}
                             </div>
                         </div>
+                    {% else %}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                    {% endif %}
                     </li>
-
-                    <li>
-                        <a href="https://deepmodeling.com/blog/papers/">Publications</a>
-                    </li>
-
-                    <li>
-                        <a href="https://github.com/deepmodeling">GitHub</a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
@@ -75,29 +52,11 @@
     <div class="mobile-main-menu-links-container">
         <div class="main-menu">
             <ul>
+                {% for item in items %}
                 <li>
-                    <a href="https://deepmodeling.com">Home</a>
+                    <a href="{{ item.url }}">{{ item.title }}</a>
                 </li>
-
-                <li>
-                    <a href="https://deepmodeling.com/blog/">Blog</a>
-                </li>
-
-                <li>
-                    <a href="https://tutorials.deepmodeling.com">Tutorials</a>
-                </li>
-
-                <li>
-                    <a href="https://docs.deepmodeling.com/">Docs</a>
-                </li>
-
-                <li>
-                    <a href="https://deepmodeling.com/blog/papers/">Publications</a>
-                </li>
-
-                <li>
-                    <a href="https://github.com/deepmodeling">GitHub</a>
-                </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
