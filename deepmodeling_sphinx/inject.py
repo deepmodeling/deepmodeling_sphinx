@@ -7,7 +7,7 @@ from jsmin import jsmin
 from cssmin import cssmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Template
 
 
 from .config import sitemap, active_class, icp_no
@@ -21,11 +21,12 @@ def rerender_banner() -> str:
     str
         HTML content of banner.
     """
-    env = Environment(
-        loader=PackageLoader('deepmodeling'),
-        autoescape=select_autoescape(),
+    source = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        'banner.html',
     )
-    template = env.get_template('banner.html')
+    with open(source) as f:
+        template = Template(f.read())
     for item in sitemap:
         if item['title'] == 'Docs':
             item['class'] = active_class
