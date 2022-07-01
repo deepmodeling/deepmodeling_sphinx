@@ -7,6 +7,31 @@ from jsmin import jsmin
 from cssmin import cssmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
+from jinja2 import Environment, PackageLoader, select_autoescape
+
+
+from .config import sitemap, active_class, icp_no
+
+
+def rerender_banner() -> str:
+    """Use jinja2 to render banner.
+    
+    Returns
+    -------
+    str
+        HTML content of banner.
+    """
+    env = Environment(
+        loader=PackageLoader('deepmodeling'),
+        autoescape=select_autoescape(),
+    )
+    template = env.get_template('banner.html')
+    for item in sitemap:
+        if item['title'] == 'Docs':
+            item['class'] = active_class
+    return template.render(
+        items=sitemap,
+    )
 
 
 def copy_custom_files(app):
@@ -43,12 +68,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
             if comment_begin in content:
                 return content
             begin_body = content.lower().find('</head>')
-            source = os.path.join(
-                os.path.abspath(os.path.dirname(__file__)),
-                'banner.html',
-            )
-            with open(source) as f:
-                banner = f.read()
+            banner = rerender_banner()
             if begin_body != -1:
                 content = content[:begin_body] + comment_begin + \
                     banner + comment_end + content[begin_body:]
@@ -73,7 +93,7 @@ def insert_icp(app, pagename, templatename, context, doctree):
             if comment_begin in content:
                 return content
             footer = content.lower().find('</footer>')
-            icp_footer = '<p><a href="https://beian.miit.gov.cn" target="_blank">京ICP备20010051号-8</a></p>'
+            icp_footer = '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>' % icp_no
             if footer != -1:
                 content = content[:footer] + comment_begin + \
                     icp_footer + comment_end + content[footer:]

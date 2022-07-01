@@ -10,6 +10,7 @@ setup(
         'htmlmin',
         'jsmin',
         'cssmin',
+        'jinja2',
     ],
     package_data={
         'deepmodeling_sphinx': ['banner.html',
