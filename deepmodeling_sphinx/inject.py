@@ -13,7 +13,7 @@ from jinja2 import Template
 from .config import sitemap, active_class, icp_no
 
 
-def rerender_banner() -> str:
+def render_banner(current_site='Docs') -> str:
     """Use jinja2 to render banner.
     
     Returns
@@ -28,7 +28,7 @@ def rerender_banner() -> str:
     with open(source) as f:
         template = Template(f.read())
     for item in sitemap:
-        if item['title'] == 'Docs':
+        if item['title'] == current_site:
             item['class'] = active_class
     return template.render(
         items=sitemap,
@@ -69,7 +69,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
             if comment_begin in content:
                 return content
             begin_body = content.lower().find('</head>')
-            banner = rerender_banner()
+            banner = render_banner(current_site=app.config.deepmodeling_current_site)
             if begin_body != -1:
                 content = content[:begin_body] + comment_begin + \
                     banner + comment_end + content[begin_body:]
@@ -151,6 +151,7 @@ def minify_css_files(app, exception):
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
+    app.add_config_value('deepmodeling_current_site', 'Docs', 'html')
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)
     app.connect('html-page-context', insert_icp)

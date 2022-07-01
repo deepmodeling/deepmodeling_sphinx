@@ -9,3 +9,5 @@ extensions = [
     'myst_parser',
 ]
 html_theme = 'sphinx_rtd_theme'
+
+deepmodeling_current_site = 'Tutorials'
