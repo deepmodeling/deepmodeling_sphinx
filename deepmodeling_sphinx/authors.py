@@ -43,13 +43,9 @@ class AuthorsDirective(SphinxDirective):
 
     def run(self):
         """Run directive."""
-        authors = list(get_authors())
-        new_content = StringList(authors, source="")
-
-        node = nodes.Element()
-        nested_parse_with_titles(self.state, new_content, node)
-
-        return node.children
+        authors = ["* " + author for author in get_authors()]
+        self.state_machine.insert_input(authors, "")
+        return []
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_directive(name="git-shortlog-authors", cls=AuthorsDirective)
