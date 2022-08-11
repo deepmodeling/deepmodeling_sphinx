@@ -43,7 +43,7 @@ class AuthorsDirective(SphinxDirective):
 
     def run(self):
         """Run directive."""
-        authors = get_authors()
+        authors = list(get_authors())
         new_content = StringList(authors, source="")
 
         node = nodes.Element()
