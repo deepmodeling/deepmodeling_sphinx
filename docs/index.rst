@@ -1,6 +1,9 @@
 .. include:: ../README.md
    :parser: myst_parser.sphinx_
 
+Others
+------
+
 .. toctree::
    :hidden:
 
