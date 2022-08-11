@@ -21,7 +21,9 @@ def git_shortlog() -> str:
     """
     if os.environ.get("READTHEDOCS", None) == "True":
         # check if it shallow clone
-        if subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"]).decode('utf-8') == "true":
+        output_git_rev_parse = subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"]).decode('utf-8').strip()
+        print(output_git_rev_parse)
+        if output_git_rev_parse == "true":
             o = subprocess.check_output(["git", "fetch", "--unshallow"])
             print(o)
     print("git log", subprocess.check_output(['git', 'log']).decode('utf-8'))
