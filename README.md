@@ -10,10 +10,21 @@ This package should be used in all sphinx projects under the [@deepmodeling](htt
 
 ## How to use it
 
+### Setup
+
 Add `deepmodeling_sphinx` to the requirements, as well as the `extensions` of `conf.py`:
 
 ```py
 extensions = [
     'deepmodeling_sphinx',
 ]
+```
+
+### Render list of authors
+
+The following directive can be used to render list of authors from `git shortlog`:
+
+```rst
+.. git-shortlog-authors::
+
 ```

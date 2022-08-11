@@ -1,6 +1,6 @@
 from datetime import date
 
-project = 'DeepModeling'
+project = 'deepmodeling_sphinx'
 copyright = '2022-%d, DeepModeling' % date.today().year
 author = 'DeepModeling'
 
