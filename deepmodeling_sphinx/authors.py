@@ -4,10 +4,7 @@ import os
 import subprocess
 from typing import Any, Dict, Iterator
 
-from docutils import nodes
-from docutils.statemachine import StringList
 from sphinx.application import Sphinx
-from sphinx.util import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective
 
 
@@ -22,12 +19,9 @@ def git_shortlog() -> str:
     if os.environ.get("READTHEDOCS", None) == "True":
         # check if it shallow clone
         output_git_rev_parse = subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"]).decode('utf-8').strip()
-        print(output_git_rev_parse)
         if output_git_rev_parse == "true":
-            o = subprocess.check_output(["git", "fetch", "--unshallow"])
-            print(o)
-    print("git log", subprocess.check_output(['git', 'log']).decode('utf-8'))
-    print("git status", subprocess.check_output(['git', 'status']).decode('utf-8'))
+            # fetch full history
+            subprocess.check_output(["git", "fetch", "--unshallow"])
     return subprocess.check_output(['git', 'shortlog', 'HEAD', '-s']).decode('utf-8')
 
 
@@ -40,7 +34,6 @@ def get_authors() -> Iterator[str]:
         Author name.
     """
     shortlog_text = git_shortlog()
-    print(shortlog_text)
     for line in shortlog_text.splitlines():
         yield line.split('\t')[1]
 
@@ -55,7 +48,6 @@ class AuthorsDirective(SphinxDirective):
     def run(self):
         """Run directive."""
         authors = ["* " + author for author in get_authors()]
-        print(authors)
         self.state_machine.insert_input(authors, "")
         return []
 
