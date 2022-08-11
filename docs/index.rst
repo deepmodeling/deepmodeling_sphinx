@@ -1,6 +1,17 @@
 .. include:: ../README.md
    :parser: myst_parser.sphinx_
 
+.. toctree::
+   :hidden:
+
+   Summary <self>
+
+
+.. toctree::
+   :titlesonly:
+
+   credits
+
 ------------------
 
 
