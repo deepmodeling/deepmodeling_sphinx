@@ -18,6 +18,8 @@ def git_shortlog() -> str:
     str
         Git-shortlog output.
     """
+    print("git log", subprocess.check_output(['git', 'log']).decode('utf-8'))
+    print("git status", subprocess.check_output(['git', 'status']).decode('utf-8'))
     return subprocess.check_output(['git', 'shortlog', '-s']).decode('utf-8')
 
 
