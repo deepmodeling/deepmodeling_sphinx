@@ -7,6 +7,7 @@ author = 'DeepModeling'
 extensions = [
     'deepmodeling_sphinx',
     'myst_parser',
+    'sphinx.ext.autodoc',
 ]
 html_theme = 'sphinx_rtd_theme'
 
