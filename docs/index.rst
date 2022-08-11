@@ -13,6 +13,7 @@ Others
 .. toctree::
    :titlesonly:
 
+   api_py/api_py
    credits
 
 ------------------
