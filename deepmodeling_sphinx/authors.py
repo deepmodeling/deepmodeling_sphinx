@@ -1,5 +1,6 @@
 """A directive to list all authors from git-shortlog."""
 
+import os
 import subprocess
 from typing import Any, Dict, Iterator
 
@@ -18,6 +19,11 @@ def git_shortlog() -> str:
     str
         Git-shortlog output.
     """
+    if os.environ.get("READTHEDOCS", None) == "True":
+        # check if it shallow clone
+        if subprocess.check_call(["git", "rev-parse", "--is-shallow-repository"]).decode('utf-8') == "true":
+            o = subprocess.check_call(["git", "fetch", "--unshallow"])
+            print(o)
     print("git log", subprocess.check_output(['git', 'log']).decode('utf-8'))
     print("git status", subprocess.check_output(['git', 'status']).decode('utf-8'))
     return subprocess.check_output(['git', 'shortlog', 'HEAD', '-s']).decode('utf-8')
