@@ -30,6 +30,7 @@ def get_authors() -> Iterator[str]:
         Author name.
     """
     shortlog_text = git_shortlog()
+    print(shortlog_text)
     for line in shortlog_text.splitlines():
         yield line.split('\t')[1]
 
@@ -44,6 +45,7 @@ class AuthorsDirective(SphinxDirective):
     def run(self):
         """Run directive."""
         authors = ["* " + author for author in get_authors()]
+        print(authors)
         self.state_machine.insert_input(authors, "")
         return []
 
