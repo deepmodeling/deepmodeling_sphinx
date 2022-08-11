@@ -20,7 +20,7 @@ def git_shortlog() -> str:
     """
     print("git log", subprocess.check_output(['git', 'log']).decode('utf-8'))
     print("git status", subprocess.check_output(['git', 'status']).decode('utf-8'))
-    return subprocess.check_output(['git', 'shortlog', '-s']).decode('utf-8')
+    return subprocess.check_output(['git', 'shortlog', 'HEAD', '-s']).decode('utf-8')
 
 
 def get_authors() -> Iterator[str]:
