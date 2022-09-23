@@ -7,6 +7,7 @@ sitemap = [
         {"title": "DP-GEN", "url": "https://docs.deepmodeling.com/projects/dpgen/"},
         {"title": "dpdata", "url": "https://docs.deepmodeling.com/projects/dpdata/"},
         {"title": "DPDispatcher", "url": "https://docs.deepmodeling.com/projects/dpdispatcher/"},
+        {"title": "ABACUS", "url": "https://abacus.deepmodeling.com/"},
     ]},
     {"title": "Publications", "url": "https://deepmodeling.com/blog/papers/"},
     {"title": "GitHub", "url": "https://github.com/deepmodeling"},
