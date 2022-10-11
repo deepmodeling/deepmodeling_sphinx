@@ -1,3 +1,33 @@
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepmodeling_sphinx"
+dynamic = ["version"]
+description = "Sphinx extension for DeepModeling projects."
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    'sphinx',
+    'htmlmin',
+    'jsmin',
+    'cssmin',
+    'jinja2',
+]
+requires-python = ">=3.6"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/deepmodeling/deepmodeling_sphinx"
+
+[tool.setuptools.package-data]
+deepmodeling_sphinx = [
+    'banner.html',
+    'banner.css',
+    'banner.js',
+]
+
 [tool.setuptools_scm]
