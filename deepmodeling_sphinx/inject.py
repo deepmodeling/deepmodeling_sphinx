@@ -36,6 +36,8 @@ def render_banner(current_site='Docs') -> str:
 
 
 def copy_custom_files(app):
+    if not app.config.enable_deepmodeling:
+        return
     if app.builder.format == 'html':
         staticdir = os.path.join(app.builder.outdir, '_static')
         banner_css = os.path.join(
@@ -55,6 +57,8 @@ def copy_custom_files(app):
 
 
 def insert_sidebar(app, pagename, templatename, context, doctree):
+    if not app.config.enable_deepmodeling:
+        return
     app.add_js_file("banner.js")
     app.add_css_file("banner.css")
     if (
@@ -82,6 +86,8 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
 
 
 def insert_icp(app, pagename, templatename, context, doctree):
+    if not app.config.enable_deepmodeling:
+        return
     if (
         not hasattr(app.builder.templates.render, '_deepmodeling_icp_patched')
     ):
@@ -151,6 +157,9 @@ def minify_css_files(app, exception):
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
+    # enable deepmodeling sidebar and icp
+    # if the repo is outside the deepmodeling, disable it
+    app.add_config_value('enable_deepmodeling', True, 'html')
     app.add_config_value('deepmodeling_current_site', 'Docs', 'html')
     app.connect('builder-inited', copy_custom_files)
     app.connect('html-page-context', insert_sidebar)

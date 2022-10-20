@@ -20,6 +20,13 @@ extensions = [
 ]
 ```
 
+Projects outside DeepModeling can also use this extension but disable DeepModeling specific styles.
+
+```py
+# default: True
+enable_deepmodeling = False
+```
+
 ### Render list of authors
 
 The following directive can be used to render list of authors from `git shortlog`:
