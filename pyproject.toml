@@ -20,6 +20,7 @@ dependencies = [
     'jsmin',
     'cssmin',
     'jinja2',
+    'sphinx_rtd_dark_mode',
 ]
 requires-python = ">=3.7"
 readme = "README.md"

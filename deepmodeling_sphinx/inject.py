@@ -156,6 +156,13 @@ def minify_css_files(app, exception):
                 f.truncate()
 
 
+def enable_dark_mode(app, config):
+    """Enable dark mode if the theme is sphinx_rtd_theme."""
+    if config.html_theme == 'sphinx_rtd_theme':
+        from sphinx_rtd_dark_mode.dark_mode_loader import DarkModeLoader
+        DarkModeLoader().configure(app, config)
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     # enable deepmodeling sidebar and icp
     # if the repo is outside the deepmodeling, disable it
@@ -167,5 +174,8 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('html-page-context', minify_html_files)
     app.connect('build-finished', minify_js_files)
     app.connect('build-finished', minify_css_files)
+    # dark mode for rtd theme
+    app.add_config_value("default_dark_mode", True, "html")
+    app.connect('config-inited', enable_dark_mode)    
 
     return {'parallel_read_safe': True}
