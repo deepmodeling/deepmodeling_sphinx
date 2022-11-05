@@ -159,8 +159,15 @@ def minify_css_files(app, exception):
 def enable_dark_mode(app, config):
     """Enable dark mode if the theme is sphinx_rtd_theme."""
     if config.html_theme == 'sphinx_rtd_theme':
-        from sphinx_rtd_dark_mode.dark_mode_loader import DarkModeLoader
-        DarkModeLoader().configure(app, config)
+        if app.builder.format == 'html':
+            staticdir = os.path.join(app.builder.outdir, '_static')
+            dark_css = os.path.join(
+                os.path.abspath(os.path.dirname(__file__)),
+                'dark_rtd.css',
+            )
+            os.makedirs(staticdir, exist_ok=True)
+            copy_asset_file(dark_css, staticdir)
+            app.add_css_file('dark_rtd.css')
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
@@ -175,7 +182,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('build-finished', minify_js_files)
     app.connect('build-finished', minify_css_files)
     # dark mode for rtd theme
-    app.add_config_value("default_dark_mode", True, "html")
     app.connect('config-inited', enable_dark_mode)    
 
     return {'parallel_read_safe': True}
