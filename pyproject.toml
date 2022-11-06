@@ -34,6 +34,7 @@ deepmodeling_sphinx = [
     'banner.html',
     'banner.css',
     'banner.js',
+    'dark_rtd.css',
 ]
 
 [tool.setuptools_scm]
