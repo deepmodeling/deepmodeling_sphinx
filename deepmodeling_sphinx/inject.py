@@ -1,6 +1,7 @@
 import types
 from typing import Dict, Any
 import os
+from pathlib import Path
 
 import htmlmin
 from jsmin import jsmin
@@ -40,20 +41,15 @@ def copy_custom_files(app):
         return
     if app.builder.format == 'html':
         staticdir = os.path.join(app.builder.outdir, '_static')
-        banner_css = os.path.join(
-            os.path.abspath(os.path.dirname(__file__)),
-            'banner.css',
-        )
-        banner_js = os.path.join(
-            os.path.abspath(os.path.dirname(__file__)),
-            'banner.js',
-        )
-        try:
-            os.makedirs(staticdir)
-        except OSError:
-            pass
-        copy_asset_file(banner_css, staticdir)
-        copy_asset_file(banner_js, staticdir)
+        cwd = Path(__file__).parent.absolute()
+        banner_css = cwd / 'banner.css'
+        banner_js = cwd / 'banner.js'
+        dark_css = cwd / 'dark_rtd.css'
+        os.makedirs(staticdir, exist_ok=True)
+        staticdir = os.path.join(app.builder.outdir, '_static')
+        copy_asset_file(str(banner_css), staticdir)
+        copy_asset_file(str(banner_js), staticdir)
+        copy_asset_file(str(dark_css), staticdir)
 
 
 def insert_sidebar(app, pagename, templatename, context, doctree):
@@ -156,6 +152,12 @@ def minify_css_files(app, exception):
                 f.truncate()
 
 
+def enable_dark_mode(app, config):
+    """Enable dark mode if the theme is sphinx_rtd_theme."""
+    if config.html_theme == 'sphinx_rtd_theme':
+        app.add_css_file('dark_rtd.css')
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     # enable deepmodeling sidebar and icp
     # if the repo is outside the deepmodeling, disable it
@@ -167,5 +169,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect('html-page-context', minify_html_files)
     app.connect('build-finished', minify_js_files)
     app.connect('build-finished', minify_css_files)
+    # dark mode for rtd theme
+    app.connect('config-inited', enable_dark_mode)    
 
     return {'parallel_read_safe': True}

@@ -7,6 +7,7 @@ This package should be used in all sphinx projects under the [@deepmodeling](htt
 - Add the DeepModeling banner
 - Add the ICP number to the footer
 - Minify HTML, Javascript, and CSS files
+- Supports dark mode for both the banner and the RTD theme
 
 ## How to use it
 

@@ -150,7 +150,8 @@ under MIT license
 }
 
 @media screen and (min-width: 1100px) {
-    .header-logo {
+    /* only fix for read the docs theme */
+    .wy-body-for-nav .header-logo {
         background-size: 50px 50px;
         position: fixed;
         height: 50px;
@@ -554,5 +555,31 @@ under MIT license
 @media screen and (min-width: 1100px) {
     .wy-side-scroll {
       height: calc(100% - 90px)!important;   
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Dark mode */
+    .header-holder {
+        background-color: #1E1E1E;
+    }
+    .header-logo::after {
+        color: #ffffff;
+    }
+    .header-holder .main-menu ul li a {
+        color: #ffffff;
+    }
+    .resources-dropdown-menu {
+        color: #ffffff;
+        background-color: #1E1E1E;
+    }
+    .header-holder .main-menu ul li a.nav-dropdown-item {
+        color: #ffffff;
+    }
+    .header-holder .main-menu ul li a.nav-dropdown-item .dropdown-title {
+        color: #ffffff;
+    }
+    .wy-body-for-nav {
+        background-color: #1E1E1E;
     }
 }
