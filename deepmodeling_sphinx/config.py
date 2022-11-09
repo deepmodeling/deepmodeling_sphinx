@@ -8,7 +8,7 @@ sitemap = [
         {"title": "dpdata", "url": "https://docs.deepmodeling.com/projects/dpdata/"},
         {"title": "DPDispatcher", "url": "https://docs.deepmodeling.com/projects/dpdispatcher/"},
         {"title": "ABACUS", "url": "https://abacus.deepmodeling.com/"},
-        {"title": "DeepFlame", "url": "https://docs.deepmodeling.com/projects/deepflame/"}
+        {"title": "DeepFlame", "url": "https://docs.deepmodeling.com/projects/deepflame/"},
     ]},
     {"title": "Publications", "url": "https://deepmodeling.com/blog/papers/"},
     {"title": "GitHub", "url": "https://github.com/deepmodeling"},
