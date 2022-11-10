@@ -308,7 +308,7 @@ under MIT license
 }
 
 .main-menu-close-button {
-    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-close.svg");
+    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-close-opt.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 24px 24px;
@@ -421,7 +421,7 @@ under MIT license
 .resources-dropdown .with-down-orange-arrow {
     padding-right: 2rem;
     position: relative;
-    background: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black.svg");
+    background: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
     background-size: 14px 18px;
     background-position: top 7px right 10px;
     background-repeat: no-repeat;
@@ -430,14 +430,14 @@ under MIT license
 .with-down-arrow {
     padding-right: 2rem;
     position: relative;
-    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black.svg");
+    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
     background-size: 14px 18px;
     background-position: top 7px right 10px;
     background-repeat: no-repeat;
 }
 
 .with-down-arrow:hover {
-    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black.svg");
+    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
     background-repeat: no-repeat;
 }
 
@@ -481,7 +481,7 @@ under MIT license
 }
 
 .main-menu-open-button {
-    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-menu-dots-dark.svg");
+    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-menu-dots-dark-opt.svg");
     background-position: center center;
     background-size: 25px 7px;
     background-repeat: no-repeat;
@@ -499,7 +499,7 @@ under MIT license
 }
 
 .tutorials-header .main-menu-open-button {
-    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-menu-dots-dark.svg");
+    background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/icon-menu-dots-dark-opt.svg");
 }
 
 
