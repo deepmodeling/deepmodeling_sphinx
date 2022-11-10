@@ -95,8 +95,8 @@ def insert_icp(app, pagename, templatename, context, doctree):
             comment_end = r"<!--deepmodeling icp end-->"
             if comment_begin in content:
                 return content
-            footer = content.lower().find('</body>')
-            icp_footer = '<footer class="bd-footer"><p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p></footer>' % icp_no
+            footer = content.lower().rfind('</footer>')
+            icp_footer = '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>' % icp_no
             if footer != -1:
                 content = content[:footer] + comment_begin + \
                     icp_footer + comment_end + content[footer:]
