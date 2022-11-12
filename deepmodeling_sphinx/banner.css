@@ -23,6 +23,8 @@ under MIT license
 .container-fluid.header-holder {
     padding-right: 0;
     padding-left: 0;
+    /* pydata theme has z-index 1030; we should be the largest */
+    z-index: 2000;
 }
 
 .header-holder .container {
