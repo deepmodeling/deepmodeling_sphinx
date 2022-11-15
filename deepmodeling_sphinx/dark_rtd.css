@@ -57,6 +57,9 @@ SOFTWARE.
     .highlight .nb {
         color: #8bb8df;
     }
+    .highlight .nv {
+        color: #40ffff;
+    }
 
     .highlight .kn,
     .highlight .kc,
@@ -75,6 +78,10 @@ SOFTWARE.
 
     .highlight .c1 {
         color: #686868;
+    }
+
+    .highlight .hll {
+        background-color: #002c4d;
     }
 
     .rst-content div[class^='highlight'] {
@@ -255,6 +262,7 @@ SOFTWARE.
         background-color: #006a56;
     }
 
+    .rst-content .admonition,
     .rst-content .note,
     .rst-content .seealso,
     .rst-content .wy-alert-info.admonition,
@@ -271,6 +279,7 @@ SOFTWARE.
         background-color: #002c4d;
     }
 
+    .rst-content .admonition .admonition-title,
     .rst-content .note .admonition-title,
     .rst-content .note .wy-alert-title,
     .rst-content .seealso .admonition-title,
