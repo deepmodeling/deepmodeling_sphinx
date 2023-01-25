@@ -1,4 +1,4 @@
-/* The initial version is taken from 
+/* The initial version is taken from
 https://github.com/pytorch/pytorch_sphinx_theme
 under MIT license
 */
