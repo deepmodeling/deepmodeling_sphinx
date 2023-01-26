@@ -10,7 +10,7 @@ from sphinx.util.docutils import SphinxDirective
 
 def git_shortlog() -> str:
     """Return git-shortlog output as a string.
-    
+
     Returns
     -------
     str
@@ -18,16 +18,20 @@ def git_shortlog() -> str:
     """
     if os.environ.get("READTHEDOCS", None) == "True":
         # check if it shallow clone
-        output_git_rev_parse = subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"]).decode('utf-8').strip()
+        output_git_rev_parse = (
+            subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"])
+            .decode("utf-8")
+            .strip()
+        )
         if output_git_rev_parse == "true":
             # fetch full history
             subprocess.check_output(["git", "fetch", "--unshallow"])
-    return subprocess.check_output(['git', 'shortlog', 'HEAD', '-s']).decode('utf-8')
+    return subprocess.check_output(["git", "shortlog", "HEAD", "-s"]).decode("utf-8")
 
 
 def get_authors() -> Iterator[str]:
     """Yields authors from git-shortlog.
-    
+
     Yields
     ------
     str
@@ -35,15 +39,14 @@ def get_authors() -> Iterator[str]:
     """
     shortlog_text = git_shortlog()
     for line in shortlog_text.splitlines():
-        yield line.split('\t')[1]
+        yield line.split("\t")[1]
 
 
 class AuthorsDirective(SphinxDirective):
     """authors directive."""
-    has_content = False
-    option_spec = dict(
-    )
 
+    has_content = False
+    option_spec = dict()
 
     def run(self):
         """Run directive."""
@@ -51,6 +54,7 @@ class AuthorsDirective(SphinxDirective):
         self.state_machine.insert_input(authors, "")
         return []
 
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_directive(name="git-shortlog-authors", cls=AuthorsDirective)
-    return {'parallel_read_safe': True}
+    return {"parallel_read_safe": True}

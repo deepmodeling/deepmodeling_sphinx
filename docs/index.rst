@@ -23,5 +23,5 @@ Others
 * :ref:`modindex`
 * :ref:`search`
 
-.. _feedback: 
-.. _affiliated packages: 
+.. _feedback:
+.. _affiliated packages:
