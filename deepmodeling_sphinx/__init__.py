@@ -1,8 +1,9 @@
 from typing import Any, Dict
+
 from sphinx.application import Sphinx
 
-from .inject import setup as setup_inject
 from .authors import setup as setup_authors
+from .inject import setup as setup_inject
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
