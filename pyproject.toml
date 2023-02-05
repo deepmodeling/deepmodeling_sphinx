@@ -38,3 +38,6 @@ deepmodeling_sphinx = [
 ]
 
 [tool.setuptools_scm]
+
+[tool.isort]
+profile = "black"
