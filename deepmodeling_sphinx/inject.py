@@ -1,17 +1,16 @@
-import types
-from typing import Dict, Any
 import os
+import types
 from pathlib import Path
+from typing import Any, Dict
 
 import htmlmin
-from jsmin import jsmin
 from cssmin import cssmin
+from jinja2 import Template
+from jsmin import jsmin
 from sphinx.application import Sphinx
 from sphinx.util.fileutil import copy_asset_file
-from jinja2 import Template
 
-
-from .config import sitemap, active_class, icp_no
+from .config import active_class, icp_no, sitemap
 
 
 def render_banner(current_site="Docs") -> str:
