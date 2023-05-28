@@ -82,9 +82,22 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
         app.builder.templates.render = types.MethodType(render, app.builder.templates)
 
 
+def insert_icp_config(app, config):
+    if config.html_theme == "sphinx_rtd_theme":
+        icp_footer = (
+            '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>'
+            % icp_no
+        )
+        if icp_no not in config.extrafooter:
+            config.extrafooter += icp_footer
+
+
 def insert_icp(app, pagename, templatename, context, doctree):
     if not app.config.enable_deepmodeling:
         return
+    if config.html_theme == "sphinx_rtd_theme":
+        # See insert_icp_config
+        return 
     if not hasattr(app.builder.templates.render, "_deepmodeling_icp_patched"):
         old_render = app.builder.templates.render
 
@@ -174,5 +187,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect("build-finished", minify_css_files)
     # dark mode for rtd theme
     app.connect("config-inited", enable_dark_mode)
+    app.connect("config-inited", insert_icp_config)
 
     return {"parallel_read_safe": True}
