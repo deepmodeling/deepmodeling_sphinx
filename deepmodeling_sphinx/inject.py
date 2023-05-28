@@ -85,8 +85,7 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
 def insert_icp_config(app, config):
     if config.html_theme == "sphinx_rtd_theme":
         icp_footer = (
-            '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>'
-            % icp_no
+            '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>' % icp_no
         )
         if icp_no not in config.extrafooter:
             config.extrafooter += icp_footer
@@ -97,7 +96,7 @@ def insert_icp(app, pagename, templatename, context, doctree):
         return
     if config.html_theme == "sphinx_rtd_theme":
         # See insert_icp_config
-        return 
+        return
     if not hasattr(app.builder.templates.render, "_deepmodeling_icp_patched"):
         old_render = app.builder.templates.render
 
