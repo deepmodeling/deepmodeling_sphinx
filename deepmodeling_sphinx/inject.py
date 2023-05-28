@@ -87,8 +87,7 @@ def insert_icp_config(app, config):
         icp_footer = (
             '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>' % icp_no
         )
-        if icp_no not in config.extrafooter:
-            config.extrafooter += icp_footer
+        config.extrafooter = icp_footer
 
 
 def insert_icp(app, pagename, templatename, context, doctree):
