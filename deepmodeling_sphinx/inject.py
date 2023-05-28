@@ -93,7 +93,7 @@ def insert_icp_config(app, config):
 def insert_icp(app, pagename, templatename, context, doctree):
     if not app.config.enable_deepmodeling:
         return
-    if config.html_theme == "sphinx_rtd_theme":
+    if app.config.html_theme == "sphinx_rtd_theme":
         # See insert_icp_config
         return
     if not hasattr(app.builder.templates.render, "_deepmodeling_icp_patched"):
