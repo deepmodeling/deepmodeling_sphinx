@@ -1,7 +1,7 @@
 on: [push, pull_request]
 name: Release to pypi
 jobs:
-  release:
+  release-to-pypi:
     name: Release to pypi
     runs-on: ubuntu-latest
     permissions:
