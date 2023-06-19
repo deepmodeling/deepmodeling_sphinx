@@ -1,5 +1,5 @@
 on: [push, pull_request]
-name: release-to-pypi
+name: Release to pypi
 jobs:
   release-to-pypi:
     name: Release to pypi
