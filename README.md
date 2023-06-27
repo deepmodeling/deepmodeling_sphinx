@@ -1,5 +1,8 @@
 # deepmodeling_sphinx
 
+[![pip install](https://img.shields.io/pypi/dm/deepmodeling_sphinx?label=pip%20install&logo=pypi)](https://pypi.org/project/deepmodeling_sphinx)
+[![Documentation Status](https://readthedocs.org/projects/deepmodeling-sphinx/badge/)](https://deepmodeling-sphinx.readthedocs.io/)
+
 This package should be used in all sphinx projects under the [@deepmodeling](https://github.com/deepmodeling) organization.
 
 ## Features
