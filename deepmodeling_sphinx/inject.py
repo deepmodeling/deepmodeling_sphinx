@@ -132,6 +132,8 @@ def minify_js_files(app, exception):
         # not html builder
         return
     for js in app.builder.script_files:
+        if js.filename is None:
+            continue
         fn = os.path.join(app.builder.outdir, js.filename)
         if os.path.isfile(fn):
             with open(fn, "r+") as f:
@@ -146,6 +148,8 @@ def minify_css_files(app, exception):
         # not html builder
         return
     for css in app.builder.css_files:
+        if css.filename is None:
+            continue
         fn = os.path.join(app.builder.outdir, css.filename)
         if os.path.isfile(fn):
             with open(fn, "r+") as f:
