@@ -12,7 +12,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "numpydoc",
 ]
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 
 
 def run_apidoc(_):
