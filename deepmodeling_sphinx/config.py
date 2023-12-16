@@ -21,6 +21,7 @@ sitemap = [
             },
             {"title": "ABACUS", "url": "https://abacus.deepmodeling.com/"},
             {"title": "DeepFlame", "url": "https://deepflame.deepmodeling.com/"},
+            {"title": "DPTI", "url": "https://docs.deepmodeling.com/projects/dpti/"},
         ],
     },
     {"title": "Publications", "url": "https://deepmodeling.com/blog/papers/"},
