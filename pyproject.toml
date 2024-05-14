@@ -16,7 +16,7 @@ classifiers = [
 ]
 dependencies = [
     'sphinx',
-    'htmlmin',
+    'minify-html-onepass',
     'jsmin',
     'cssmin',
     'jinja2',

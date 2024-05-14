@@ -3,7 +3,7 @@ import types
 from pathlib import Path
 from typing import Any, Dict
 
-import htmlmin
+import minify_html_onepass
 from cssmin import cssmin
 from jinja2 import Template
 from jsmin import jsmin
@@ -120,7 +120,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
         def render(self, template, render_context):
             content = old_render(template, render_context)
-            return htmlmin.minify(content)
+            return minify_html_onepass.minify(content, minify_js=True)
 
         render.__dict__.update(old_render.__dict__)
         render._deepmodeling_minified = True
