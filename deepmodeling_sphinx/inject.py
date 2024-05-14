@@ -3,7 +3,7 @@ import types
 from pathlib import Path
 from typing import Any, Dict
 
-import minify_html_onepass
+import minify_html
 from cssmin import cssmin
 from jinja2 import Template
 from jsmin import jsmin
@@ -121,7 +121,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
         def render(self, template, render_context):
             content = old_render(template, render_context)
             try:
-                return minify_html_onepass.minify(
+                return minify_html.minify(
                     content, minify_js=True, minify_css=True
                 )
             except SyntaxError:
