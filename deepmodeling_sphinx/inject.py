@@ -120,7 +120,12 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
         def render(self, template, render_context):
             content = old_render(template, render_context)
-            return minify_html_onepass.minify(content, minify_js=True)
+            try:
+                return minify_html_onepass.minify(
+                    content, minify_js=True, minify_css=True
+                )
+            except SyntaxError:
+                return content
 
         render.__dict__.update(old_render.__dict__)
         render._deepmodeling_minified = True
