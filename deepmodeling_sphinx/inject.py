@@ -121,7 +121,9 @@ def minify_html_files(app, pagename, templatename, context, doctree):
         def render(self, template, render_context):
             content = old_render(template, render_context)
             try:
-                return minify_html_onepass.minify(content, minify_js=True, minify_css=True)
+                return minify_html_onepass.minify(
+                    content, minify_js=True, minify_css=True
+                )
             except SyntaxError:
                 return content
 
