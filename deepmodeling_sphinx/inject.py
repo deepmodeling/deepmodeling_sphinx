@@ -170,11 +170,11 @@ def enable_dark_mode(app, config):
 
 def rtd_config(app, config):
     """Set RTD configurations.
-    
+
     See https://about.readthedocs.com/blog/2024/07/addons-by-default/
     """
     config.html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
-    
+
     # Tell Jinja2 templates the build is running on Read the Docs
     if os.environ.get("READTHEDOCS", "") == "True":
         if "html_context" not in config:
