@@ -126,6 +126,7 @@ def minify_html_files(app, pagename, templatename, context, doctree):
                     minify_js=True,
                     minify_css=True,
                     keep_html_and_head_opening_tags=True,
+                    keep_closing_tags=True,
                 )
             except SyntaxError:
                 return content
