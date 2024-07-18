@@ -24,7 +24,8 @@ under MIT license
   padding-right: 0;
   padding-left: 0;
   /* pydata theme has z-index 1030; we should be the largest */
-  z-index: 2000;
+  /* RTD banner use 1750; we should be smaller than RTD */
+  z-index: 1749;
 }
 
 .header-holder .container {
