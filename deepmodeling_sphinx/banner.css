@@ -457,7 +457,7 @@ under MIT license
   font-weight: 400;
   color: #979797;
   text-align: center;
-  background-color: transparent;
+  background-color: #ffffff;
   border-bottom: 1px solid #e2e2e2;
 }
 
@@ -576,6 +576,7 @@ under MIT license
   }
   .header-holder .main-menu ul li a.nav-dropdown-item {
     color: #ffffff;
+    background-color: #1e1e1e;
   }
   .header-holder .main-menu ul li a.nav-dropdown-item .dropdown-title {
     color: #ffffff;
