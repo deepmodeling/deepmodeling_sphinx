@@ -3,7 +3,7 @@ import types
 from pathlib import Path
 from typing import Any, Dict
 
-import htmlmin
+import minify_html
 from cssmin import cssmin
 from jinja2 import Template
 from jsmin import jsmin
@@ -120,7 +120,16 @@ def minify_html_files(app, pagename, templatename, context, doctree):
 
         def render(self, template, render_context):
             content = old_render(template, render_context)
-            return htmlmin.minify(content)
+            try:
+                return minify_html.minify(
+                    content,
+                    minify_js=True,
+                    minify_css=True,
+                    keep_html_and_head_opening_tags=True,
+                    keep_closing_tags=True,
+                )
+            except SyntaxError:
+                return content
 
         render.__dict__.update(old_render.__dict__)
         render._deepmodeling_minified = True
@@ -165,6 +174,20 @@ def enable_dark_mode(app, config):
         app.add_css_file("dark_rtd.css")
 
 
+def rtd_config(app, config):
+    """Set RTD configurations.
+
+    See https://about.readthedocs.com/blog/2024/07/addons-by-default/
+    """
+    config.html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
+
+    # Tell Jinja2 templates the build is running on Read the Docs
+    if os.environ.get("READTHEDOCS", "") == "True":
+        if "html_context" not in config:
+            config.html_context = {}
+        config.html_context["READTHEDOCS"] = True
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     # enable deepmodeling sidebar and icp
     # if the repo is outside the deepmodeling, disable it
@@ -178,5 +201,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect("build-finished", minify_css_files)
     # dark mode for rtd theme
     app.connect("config-inited", enable_dark_mode)
+    app.connect("config-inited", rtd_config)
 
     return {"parallel_read_safe": True}

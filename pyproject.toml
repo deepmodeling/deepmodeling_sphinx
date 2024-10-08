@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools>=61", "setuptools_scm[toml]>=7"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,7 +16,7 @@ classifiers = [
 ]
 dependencies = [
     'sphinx',
-    'htmlmin',
+    'minify-html',
     'jsmin',
     'cssmin',
     'jinja2',
@@ -41,3 +41,8 @@ deepmodeling_sphinx = [
 
 [tool.isort]
 profile = "black"
+
+[tool.ruff]
+select = [
+    "I", # isort
+]

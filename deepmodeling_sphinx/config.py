@@ -1,6 +1,6 @@
 sitemap = [
     {"title": "Home", "url": "https://deepmodeling.com"},
-    {"title": "Blog", "url": "https://deepmodeling.com/blog"},
+    {"title": "Blog", "url": "https://blogs.deepmodeling.com"},
     {"title": "Tutorials", "url": "https://tutorials.deepmodeling.com"},
     {
         "title": "Docs",
@@ -21,9 +21,10 @@ sitemap = [
             },
             {"title": "ABACUS", "url": "https://abacus.deepmodeling.com/"},
             {"title": "DeepFlame", "url": "https://deepflame.deepmodeling.com/"},
+            {"title": "DPTI", "url": "https://docs.deepmodeling.com/projects/dpti/"},
         ],
     },
-    {"title": "Publications", "url": "https://deepmodeling.com/blog/papers/"},
+    {"title": "Publications", "url": "https://blogs.deepmodeling.com/papers/"},
     {"title": "GitHub", "url": "https://github.com/deepmodeling"},
 ]
 
