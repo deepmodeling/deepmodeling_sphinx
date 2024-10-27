@@ -190,7 +190,6 @@ def rtd_config(app, config):
             config.html_context = {}
         config.html_context["READTHEDOCS"] = True
 
-
 def sphinx_book_theme(app, config):
     """Set configurations for sphinx_book_theme."""
     if not config.enable_deepmodeling:
@@ -198,11 +197,10 @@ def sphinx_book_theme(app, config):
     if config.html_theme != "sphinx_book_theme":
         return
     icp_footer = (
-        '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>' % icp_no
+        '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>'
+        % icp_no
     )
-    config.html_theme["extra_footer"] = (
-        config.html_theme.get("extra_footer", "") + icp_footer
-    )
+    config.html_theme_options["extra_footer"] = config.html_theme_options.get("extra_footer", "") + icp_footer
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
@@ -222,3 +220,4 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect("config-inited", sphinx_book_theme)
 
     return {"parallel_read_safe": True}
+
