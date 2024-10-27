@@ -559,7 +559,7 @@ under MIT license
   }
 }
 
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"], html[data-theme=""] and @media (prefers-color-scheme: dark) {
   /* Dark mode */
   .header-holder {
     background-color: #1e1e1e;
