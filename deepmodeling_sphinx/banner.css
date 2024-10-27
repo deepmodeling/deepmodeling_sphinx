@@ -129,13 +129,13 @@ under MIT license
 
 .header-logo {
   height: 50px;
-  width: 50px;
   background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/logos/deepmodeling.svg");
   background-repeat: no-repeat;
   background-size: 50px 50px;
   display: block;
   float: left;
   z-index: 10;
+  text-decoration: none;
 }
 
 .header-logo::after {
