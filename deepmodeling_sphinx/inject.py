@@ -85,6 +85,9 @@ def insert_sidebar(app, pagename, templatename, context, doctree):
 def insert_icp(app, pagename, templatename, context, doctree):
     if not app.config.enable_deepmodeling:
         return
+    if app.config.html_theme == "sphinx_book_theme":
+        # sphinx_book_theme has provided the option, so there is no need to hack
+        return
     if not hasattr(app.builder.templates.render, "_deepmodeling_icp_patched"):
         old_render = app.builder.templates.render
 
@@ -187,6 +190,18 @@ def rtd_config(app, config):
             config.html_context = {}
         config.html_context["READTHEDOCS"] = True
 
+def sphinx_book_theme(app, config):
+    """Set configurations for sphinx_book_theme."""
+    if not config.enable_deepmodeling:
+        return
+    if config.html_theme != "sphinx_book_theme":
+        return
+    icp_footer = (
+        '<p><a href="https://beian.miit.gov.cn" target="_blank">%s</a></p>'
+        % icp_no
+    )
+    config.html_theme["extra_footer"] = config.html_theme.get("extra_footer", "") + icp_footer
+
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     # enable deepmodeling sidebar and icp
@@ -202,5 +217,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     # dark mode for rtd theme
     app.connect("config-inited", enable_dark_mode)
     app.connect("config-inited", rtd_config)
+    app.connect("config-inited", sphinx_book_theme)
 
     return {"parallel_read_safe": True}
