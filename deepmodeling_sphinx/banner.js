@@ -5,22 +5,26 @@ rewrite to remove jQuery by ChatGPT
 */
 window.mobileMenu = {
   bind: function () {
-    document.querySelectorAll("[data-behavior='open-mobile-menu']").forEach(function (element) {
-      element.addEventListener("click", function (e) {
-        e.preventDefault();
-        document.querySelector(".mobile-main-menu").classList.add("open");
-        document.body.classList.add("no-scroll");
+    document
+      .querySelectorAll("[data-behavior='open-mobile-menu']")
+      .forEach(function (element) {
+        element.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(".mobile-main-menu").classList.add("open");
+          document.body.classList.add("no-scroll");
 
-        mobileMenu.listenForResize();
+          mobileMenu.listenForResize();
+        });
       });
-    });
 
-    document.querySelectorAll("[data-behavior='close-mobile-menu']").forEach(function (element) {
-      element.addEventListener("click", function (e) {
-        e.preventDefault();
-        mobileMenu.close();
+    document
+      .querySelectorAll("[data-behavior='close-mobile-menu']")
+      .forEach(function (element) {
+        element.addEventListener("click", function (e) {
+          e.preventDefault();
+          mobileMenu.close();
+        });
       });
-    });
   },
 
   listenForResize: function () {
@@ -45,7 +49,7 @@ window.mobileMenu = {
       window.removeEventListener("resize", this.resizeHandler);
       this.resizeHandler = null;
     }
-  }
+  },
 };
 
 document.addEventListener("DOMContentLoaded", function () {
