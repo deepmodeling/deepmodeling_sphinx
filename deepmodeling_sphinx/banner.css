@@ -135,6 +135,7 @@ under MIT license
   display: block;
   float: left;
   z-index: 10;
+  text-decoration: none;
 }
 
 .header-logo::after {
