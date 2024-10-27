@@ -560,7 +560,36 @@ under MIT license
 }
 
 @media (prefers-color-scheme: dark) {
-  /* Dark mode */
+  /* skip sphinx-book-theme */
+  html:not([data-theme]) {
+    /* Dark mode */
+    .header-holder {
+      background-color: #1e1e1e;
+    }
+    .header-logo::after {
+      color: #ffffff;
+    }
+    .header-holder .main-menu ul li a {
+      color: #ffffff;
+    }
+    .resources-dropdown-menu {
+      color: #ffffff;
+      background-color: #1e1e1e;
+    }
+    .header-holder .main-menu ul li a.nav-dropdown-item {
+      color: #ffffff;
+    }
+    .header-holder .main-menu ul li a.nav-dropdown-item .dropdown-title {
+      color: #ffffff;
+    }
+    .wy-body-for-nav {
+      background-color: #1e1e1e;
+    }
+  }
+}
+
+html[data-theme="dark"] {
+  /* sphinx-book-theme Dark mode */
   .header-holder {
     background-color: #1e1e1e;
   }
