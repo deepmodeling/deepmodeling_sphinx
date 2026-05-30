@@ -422,11 +422,12 @@ under MIT license
 .header-holder .main-menu ul li a.nav-dropdown-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: 2.75rem;
   clear: both;
   color: var(--dm-muted);
-  text-align: left;
+  text-align: center;
   background-color: transparent;
   border-bottom: 0;
   border-radius: 0.75rem;
