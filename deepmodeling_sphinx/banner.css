@@ -384,9 +384,9 @@ under MIT license
 .resources-dropdown .with-down-orange-arrow {
   padding-right: 2rem;
   position: relative;
-  background: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
-  background-size: 0.8rem 1rem;
-  background-position: top 0.7rem right 0.65rem;
+  background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
+  background-size: 0.75rem 0.75rem;
+  background-position: right 0.7rem center;
   background-repeat: no-repeat;
 }
 
@@ -394,8 +394,8 @@ under MIT license
   padding-right: 2rem;
   position: relative;
   background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
-  background-size: 0.8rem 1rem;
-  background-position: top 0.7rem right 0.65rem;
+  background-size: 0.75rem 0.75rem;
+  background-position: right 0.7rem center;
   background-repeat: no-repeat;
 }
 
@@ -409,8 +409,10 @@ under MIT license
 }
 
 .header-holder .main-menu ul li a.nav-dropdown-item {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
+  min-height: 2.75rem;
   clear: both;
   color: var(--dm-muted);
   text-align: left;
@@ -534,6 +536,14 @@ under MIT license
 .bd-sidebar-primary .sidebar-primary-items__end,
 .bd-sidebar-primary .sidebar-primary-items__start {
   border-color: var(--dm-header-border);
+}
+
+.bd-sidebar-primary {
+  overflow: visible;
+}
+
+.bd-sidebar-primary .sidebar-primary-items__start {
+  overflow: visible;
 }
 
 .bd-links .current > a,
