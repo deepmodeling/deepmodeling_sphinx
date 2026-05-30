@@ -210,7 +210,11 @@ under MIT license
 
 .mobile-main-menu.open {
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.28), transparent 24rem),
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.28),
+      transparent 24rem
+    ),
     #0f172a;
   display: block;
   height: 100%;
@@ -575,13 +579,24 @@ html[data-theme="dark"] {
 html[data-theme="dark"] .header-logo::after,
 html[data-theme="dark"] .header-holder .main-menu ul li a,
 html[data-theme="dark"] .header-holder .main-menu ul li a.nav-dropdown-item,
-html[data-theme="dark"] .header-holder .main-menu ul li a.nav-dropdown-item .dropdown-title {
+html[data-theme="dark"]
+  .header-holder
+  .main-menu
+  ul
+  li
+  a.nav-dropdown-item
+  .dropdown-title {
   color: var(--dm-muted);
 }
 
 html[data-theme="dark"] .header-holder .main-menu ul li.active a,
 html[data-theme="dark"] .header-holder .main-menu ul li a:hover,
-html[data-theme="dark"] .header-holder .main-menu ul li a.nav-dropdown-item:hover {
+html[data-theme="dark"]
+  .header-holder
+  .main-menu
+  ul
+  li
+  a.nav-dropdown-item:hover {
   color: var(--dm-primary-strong);
 }
 
