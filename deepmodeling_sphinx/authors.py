@@ -2,10 +2,34 @@
 
 import os
 import subprocess
+import warnings
 from typing import Any, Dict, Iterator
 
 from sphinx.application import Sphinx
 from sphinx.util.docutils import SphinxDirective
+
+
+def _is_shallow_repository() -> bool:
+    """Return whether the current repository is shallow."""
+    return (
+        subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"])
+        .decode("utf-8")
+        .strip()
+        == "true"
+    )
+
+
+def _fetch_full_history() -> None:
+    """Fetch complete history without downloading blob contents when possible."""
+    try:
+        subprocess.check_call(["git", "fetch", "--unshallow", "--filter=blob:none"])
+    except subprocess.CalledProcessError:
+        warnings.warn(
+            "Unable to fetch the complete git history with --filter=blob:none. "
+            "The generated author list may be incomplete.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
 
 
 def git_shortlog() -> str:
@@ -16,16 +40,8 @@ def git_shortlog() -> str:
     str
         Git-shortlog output.
     """
-    if os.environ.get("READTHEDOCS", None) == "True":
-        # check if it shallow clone
-        output_git_rev_parse = (
-            subprocess.check_output(["git", "rev-parse", "--is-shallow-repository"])
-            .decode("utf-8")
-            .strip()
-        )
-        if output_git_rev_parse == "true":
-            # fetch full history
-            subprocess.check_output(["git", "fetch", "--unshallow"])
+    if os.environ.get("READTHEDOCS", None) == "True" and _is_shallow_repository():
+        _fetch_full_history()
     return subprocess.check_output(["git", "shortlog", "HEAD", "-s"]).decode("utf-8")
 
 
