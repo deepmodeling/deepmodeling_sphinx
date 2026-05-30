@@ -382,12 +382,23 @@ under MIT license
 }
 
 .resources-dropdown .with-down-orange-arrow {
-  padding-right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-right: 0.8rem;
   position: relative;
+  background-image: none;
+}
+
+.resources-dropdown .with-down-orange-arrow::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.75rem;
+  height: 0.75rem;
   background-image: url("https://unpkg.com/@njzjz/icons@0.0.5/deepmodeling/chevron-down-black-opt.svg");
-  background-size: 0.75rem 0.75rem;
-  background-position: right 0.7rem center;
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .with-down-arrow {
@@ -619,7 +630,7 @@ html[data-theme="dark"] .resources-dropdown-menu {
   background-color: var(--dm-surface);
 }
 
-html[data-theme="dark"] .resources-dropdown .with-down-orange-arrow,
+html[data-theme="dark"] .resources-dropdown .with-down-orange-arrow::after,
 html[data-theme="dark"] .with-down-arrow,
 html[data-theme="dark"] .with-down-arrow:hover {
   filter: invert(1);
@@ -647,7 +658,7 @@ html[data-theme="dark"] .mobile-main-menu.open .header-logo::after {
     background-color: #1e1e1e;
   }
 
-  html:not([data-theme]) .resources-dropdown .with-down-orange-arrow,
+  html:not([data-theme]) .resources-dropdown .with-down-orange-arrow::after,
   html:not([data-theme]) .with-down-arrow,
   html:not([data-theme]) .with-down-arrow:hover {
     filter: invert(1);
