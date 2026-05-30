@@ -49,7 +49,7 @@ under MIT license
   left: 0;
   margin-left: auto;
   margin-right: auto;
-  position: sticky;
+  position: relative;
   right: 0;
   top: 0;
   width: 100%;
