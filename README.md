@@ -20,7 +20,7 @@ Add `deepmodeling_sphinx` to the requirements, as well as the `extensions` of `c
 
 ```py
 extensions = [
-    'deepmodeling_sphinx',
+    "deepmodeling_sphinx",
 ]
 ```
 
